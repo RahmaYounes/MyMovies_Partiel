@@ -9,16 +9,10 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
 import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import rahma.androidfirst.mymovies.ScreenFILM
-import rahma.androidfirst.mymovies.MyNavigator
-import rahma.androidfirst.mymovies.Screen
 import rahma.androidfirst.mymovies.ui.theme.PremiereApplicationMonProfilTheme
-
-
 
 
 class MainActivity : ComponentActivity() {
@@ -40,7 +34,7 @@ class MainActivity : ComponentActivity() {
                 val navController = rememberNavController()
                 NavHost(navController = navController ,startDestination = "screen") {
                     composable("screen")
-                    { Screen(windowSizeClass = windowSizeClass, navController = navController) }
+                    { ProfileScreen(windowSizeClass = windowSizeClass, navController = navController) }
                     composable("navigation")
                     { MyNavigator(windowSizeClass = windowSizeClass) }
                 }

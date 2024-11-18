@@ -2,7 +2,6 @@ package rahma.androidfirst.mymovies
 
 
 import android.annotation.SuppressLint
-
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -32,11 +31,10 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
-import rahma.androidfirst.mymovies.MainViewModel
 
 
 @Composable
-fun ScreenFILM(windowSizeClass: WindowSizeClass, innernavController : NavController){
+fun MoviesScreen(windowSizeClass: WindowSizeClass, innernavController : NavController){
     val classeHauteur = windowSizeClass.heightSizeClass
     val classeLargeur = windowSizeClass.widthSizeClass
 

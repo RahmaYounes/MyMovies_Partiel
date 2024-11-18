@@ -40,7 +40,7 @@ import androidx.navigation.NavController
 import rahma.androidfirst.mymovies.ui.theme.Purple40
 
 @Composable
-fun Screen(windowSizeClass: WindowSizeClass, navController: NavController) {
+fun ProfileScreen(windowSizeClass: WindowSizeClass, navController: NavController) {
     val classeLargeur = windowSizeClass.widthSizeClass
 
     when (classeLargeur) {
