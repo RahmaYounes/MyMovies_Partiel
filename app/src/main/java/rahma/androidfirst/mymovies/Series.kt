@@ -76,7 +76,7 @@ fun LayoutverticalDescSerie(modifier: Modifier = Modifier, windowSizeClass : Win
         /*Poster fond de toile*/
         Row(
             modifier = Modifier
-                .background(Color.Blue)
+                .background(Color.Gray)
                 .fillMaxSize()
                 .padding(top = 15.dp),
             horizontalArrangement = Arrangement.Center) {
@@ -89,7 +89,7 @@ fun LayoutverticalDescSerie(modifier: Modifier = Modifier, windowSizeClass : Win
         /*Phrase d'acroche*/
         Row(
             modifier = Modifier
-                .background(Color.Blue)
+                .background(Color.Gray)
                 .fillMaxSize()
                 .padding(top = 15.dp),
             horizontalArrangement = Arrangement.Center){
@@ -103,7 +103,7 @@ fun LayoutverticalDescSerie(modifier: Modifier = Modifier, windowSizeClass : Win
         /*Genre de la serie*/
         Row(
             modifier = Modifier
-                .background(Color.Blue)
+                .background(Color.Gray)
                 .fillMaxSize()
                 .padding(vertical = 15.dp),
             horizontalArrangement = Arrangement.SpaceEvenly) {
@@ -209,7 +209,7 @@ fun LayouthorizontalDescSerie(modifier: Modifier = Modifier,windowSizeClass : Wi
         /*Poster fond de toile*/
         Row(
             modifier = Modifier
-                .background(Color.Blue)
+                .background(Color.Gray)
                 .fillMaxSize()
                 .padding(top = 15.dp),
             horizontalArrangement = Arrangement.Center) {
@@ -222,7 +222,7 @@ fun LayouthorizontalDescSerie(modifier: Modifier = Modifier,windowSizeClass : Wi
         /*Phrase d'acroche*/
         Row(
             modifier = Modifier
-                .background(Color.Blue)
+                .background(Color.Gray)
                 .fillMaxSize()
                 .padding(top = 15.dp),
             horizontalArrangement = Arrangement.Center){
@@ -236,7 +236,7 @@ fun LayouthorizontalDescSerie(modifier: Modifier = Modifier,windowSizeClass : Wi
         /*Genre de la serie*/
         Row(
             modifier = Modifier
-                .background(Color.Blue)
+                .background(Color.Gray)
                 .fillMaxSize()
                 .padding(vertical = 15.dp),
             horizontalArrangement = Arrangement.SpaceEvenly) {

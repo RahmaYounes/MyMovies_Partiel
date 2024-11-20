@@ -103,7 +103,7 @@ fun ProfileSection(modifier: Modifier = Modifier) {
             painter = painterResource(id = R.drawable.image1),
             contentDescription = "Moi",
             modifier = modifier
-                .size(160.dp)
+                .size(170.dp)
                 .clip(CircleShape)
                 .border(BorderStroke(1.dp, Color.Gray), CircleShape),
             contentScale = ContentScale.Crop
@@ -113,7 +113,7 @@ fun ProfileSection(modifier: Modifier = Modifier) {
             text = "Rahma Ben Younes",
             modifier = modifier,
             fontFamily = FontFamily.SansSerif,
-            fontSize = 20.sp,
+            fontSize = 23.sp,
             fontWeight = FontWeight.Bold,
             textAlign = TextAlign.Center
         )
@@ -123,6 +123,7 @@ fun ProfileSection(modifier: Modifier = Modifier) {
             modifier = modifier,
             fontFamily = FontFamily.SansSerif,
             fontStyle = FontStyle.Italic,
+            fontSize = 15.sp,
             color = Color.Gray,
             textAlign = TextAlign.Center
         )
@@ -132,6 +133,7 @@ fun ProfileSection(modifier: Modifier = Modifier) {
             modifier = modifier,
             color = Color.Gray,
             textAlign = TextAlign.Center,
+            fontSize = 15.sp,
             fontFamily = FontFamily.SansSerif,
             fontStyle = FontStyle.Italic
         )
@@ -142,7 +144,7 @@ fun ProfileSection(modifier: Modifier = Modifier) {
 fun ContactSection(modifier: Modifier = Modifier) {
     val context = LocalContext.current
     Column(
-        modifier = Modifier.padding(top = 40.dp),
+        modifier = Modifier.padding(top = 30.dp),
         horizontalAlignment = Alignment.Start
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
@@ -156,7 +158,7 @@ fun ContactSection(modifier: Modifier = Modifier) {
             Spacer(modifier = Modifier.width(8.dp))
             Text(
                 text = "rahmabenyounes@yahoo.com",
-                fontSize = 12.sp
+                fontSize = 13.sp
             )
         }
         Spacer(modifier = Modifier.height(16.dp))
@@ -173,7 +175,7 @@ fun ContactSection(modifier: Modifier = Modifier) {
             Spacer(modifier = Modifier.width(8.dp))
             Text(
                 text = "www.linkedin.com/in/rahma-younes",
-                fontSize = 12.sp,
+                fontSize = 13.sp,
                 modifier = Modifier.clickable {
                     val intent = Intent(
                         Intent.ACTION_VIEW,
