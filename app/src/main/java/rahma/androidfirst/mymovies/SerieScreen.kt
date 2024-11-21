@@ -32,6 +32,8 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
+import rahma.androidfirst.mymovies.ui.theme.CustomColor
+
 
 @Composable
 fun SerieScreen(windowSizeClass: WindowSizeClass, innernavController: NavController) {

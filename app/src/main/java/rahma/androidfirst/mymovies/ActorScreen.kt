@@ -1,6 +1,7 @@
 package rahma.androidfirst.mymovies
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -26,6 +27,8 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
+import rahma.androidfirst.mymovies.ui.theme.CustomColor
+
 
 @Composable
 fun ActorScreen(windowSizeClass: WindowSizeClass, viewModel: ViewModelperson = viewModel()) {
@@ -40,8 +43,10 @@ fun ActorScreen(windowSizeClass: WindowSizeClass, viewModel: ViewModelperson = v
         LazyVerticalGrid(
             columns = GridCells.Fixed(2),
             modifier = Modifier
-                .background(CustomColor)
                 .padding(start = 9.dp, top = 30.dp, end = 9.dp)
+                .background(CustomColor),
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             items(persons) { person ->
                 Card(

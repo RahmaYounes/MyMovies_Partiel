@@ -32,8 +32,8 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
+import rahma.androidfirst.mymovies.ui.theme.CustomColor
 
-val CustomColor = Color(0xFFf3f4f6) // Define your custom color
 
 @Composable
 fun MoviesScreen(windowSizeClass: WindowSizeClass, innernavController: NavController) {
