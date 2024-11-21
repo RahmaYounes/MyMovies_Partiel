@@ -1,6 +1,9 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    kotlin("plugin.serialization") version "1.9.25"
+    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -50,14 +53,13 @@ android {
 }
 
 dependencies {
-
-    implementation ("androidx.compose.material:material:1.3.1")
-    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("androidx.compose.material:material:1.3.1")
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("io.coil-kt:coil-compose:2.4.0")
-    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0")
-    implementation ("com.squareup.retrofit2:converter-moshi:2.9.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0")
+    implementation("com.squareup.retrofit2:converter-moshi:2.9.0")
     implementation("androidx.compose.material3:material3-window-size-class:1.1.1")
-    implementation ("androidx.navigation:navigation-compose:2.5.3")
+    implementation("androidx.navigation:navigation-compose:2.5.3")
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
     implementation("androidx.activity:activity-compose:1.7.0")
@@ -73,4 +75,7 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+
+    implementation("com.google.dagger:hilt-android:2.44")
+    kapt("com.google.dagger:hilt-compiler:2.44")
 }
