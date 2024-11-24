@@ -4,6 +4,7 @@ plugins {
     kotlin("plugin.serialization") version "1.9.25"
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
+    id("androidx.room")
 }
 
 android {
@@ -50,6 +51,10 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+
+    room {
+        schemaDirectory("$projectDir/schemas")
+    }
 }
 
 dependencies {
@@ -76,6 +81,12 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
+    // kapt
     implementation("com.google.dagger:hilt-android:2.44")
     kapt("com.google.dagger:hilt-compiler:2.44")
+
+    // Room
+    /*implementation("libs.room.runtime")
+    implementation("libs.room.ktx")
+    kapt("libs.room.compiler")*/
 }
