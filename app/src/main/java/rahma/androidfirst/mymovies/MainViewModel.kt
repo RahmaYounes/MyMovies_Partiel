@@ -14,7 +14,8 @@ val retrofit = Retrofit.Builder()
     .addConverterFactory(MoshiConverterFactory.create())
     .build()
 
-class MainViewModel : ViewModel() {
+class MainViewModel(appDao: AppDao) : ViewModel() {
+    private val repository = Repository(appDao)
     val api = retrofit.create(Api::class.java)
     val listmovies = MutableStateFlow<List<Film>>(listOf())
     val searchQuery = MutableStateFlow("")
@@ -39,9 +40,66 @@ class MainViewModel : ViewModel() {
             }
         }
     }
+
+    val allFilms = repository.getAllFilms()
+    val allSeries = repository.getAllSeries()
+    val allActeurs = repository.getAllActeurs()
+
+    fun insertFilm(film: FilmEntity) {
+        viewModelScope.launch {
+            repository.insertFilm(film)
+        }
+    }
+
+    fun insertSerie(serie: SerieEntity) {
+        viewModelScope.launch {
+            repository.insertSerie(serie)
+        }
+    }
+
+    fun insertActeur(acteur: ActeurEntity) {
+        viewModelScope.launch {
+            repository.insertActeur(acteur)
+        }
+    }
+
+    fun toggleFavoriteFilm(film: FilmEntity) {
+        viewModelScope.launch {
+            if (film.isFav) {
+                repository.deleteFilm(film)
+            } else {
+                repository.insertFilm(film.copy(isFav = true))
+            }
+        }
+    }
+
+    fun toggleFavoriteSerie(serie: SerieEntity) {
+        viewModelScope.launch {
+            if (serie.isFav) {
+                repository.deleteSerie(serie)
+            } else {
+                repository.insertSerie(serie.copy(isFav = true))
+            }
+        }
+    }
+
+    fun toggleFavoriteActeur(acteur: ActeurEntity) {
+        viewModelScope.launch {
+            if (acteur.isFav) {
+                repository.deleteActeur(acteur)
+            } else {
+                repository.insertActeur(acteur.copy(isFav = true))
+            }
+        }
+    }
+
+    fun toggleFavoriteView(showFavorites: Boolean) {
+        // Update the lists of entities to show only favorites or all items
+    }
 }
 
-class ViewModelserie : ViewModel() {
+class ViewModelserie(appDao: AppDao) : ViewModel() {
+    private val repository = Repository(appDao)
     val api = retrofit.create(Api::class.java)
     val listtvs = MutableStateFlow<List<Tv>>(listOf())
     val searchQuery = MutableStateFlow("")
@@ -68,7 +126,8 @@ class ViewModelserie : ViewModel() {
     }
 }
 
-class ViewModelperson : ViewModel() {
+class ViewModelperson(appDao: AppDao) : ViewModel() {
+    private val repository = Repository(appDao)
     val api = retrofit.create(Api::class.java)
     val listpersons = MutableStateFlow<List<Persons>>(listOf())
     val searchQuery = MutableStateFlow("")
@@ -95,7 +154,8 @@ class ViewModelperson : ViewModel() {
     }
 }
 
-class ViewModeldescfilm(savedStateHandle: SavedStateHandle) : ViewModel() {
+class ViewModeldescfilm(savedStateHandle: SavedStateHandle, appDao: AppDao) : ViewModel() {
+    private val repository = Repository(appDao)
     private val filmId: String = checkNotNull(savedStateHandle["filmId"])
     val api = retrofit.create(Api::class.java)
     val listDetailFilm = MutableStateFlow<DescFILM>(DescFILM())
@@ -111,7 +171,8 @@ class ViewModeldescfilm(savedStateHandle: SavedStateHandle) : ViewModel() {
     }
 }
 
-class ViewModeldescserie(savedStateHandle: SavedStateHandle) : ViewModel() {
+class ViewModeldescserie(savedStateHandle: SavedStateHandle, appDao: AppDao) : ViewModel() {
+    private val repository = Repository(appDao)
     private val serieId: String = checkNotNull(savedStateHandle["serieId"])
     val api = retrofit.create(Api::class.java)
     val listDetailserie = MutableStateFlow<DetailsSerie>(DetailsSerie())
@@ -124,5 +185,36 @@ class ViewModeldescserie(savedStateHandle: SavedStateHandle) : ViewModel() {
         viewModelScope.launch {
             listDetailserie.value = api.detailserie(serieId, api_key = API_KEY)
         }
+    }
+}
+
+class Repository(private val appDao: AppDao) {
+
+    fun getAllFilms() = appDao.getAllFilms()
+    fun getAllSeries() = appDao.getAllSeries()
+    fun getAllActeurs() = appDao.getAllActeurs()
+
+    suspend fun insertFilm(film: FilmEntity) {
+        appDao.insertFilm(film)
+    }
+
+    suspend fun insertSerie(serie: SerieEntity) {
+        appDao.insertSerie(serie)
+    }
+
+    suspend fun insertActeur(acteur: ActeurEntity) {
+        appDao.insertActeur(acteur)
+    }
+
+    suspend fun deleteFilm(film: FilmEntity) {
+        appDao.deleteFilm(film)
+    }
+
+    suspend fun deleteSerie(serie: SerieEntity) {
+        appDao.deleteSerie(serie)
+    }
+
+    suspend fun deleteActeur(acteur: ActeurEntity) {
+        appDao.deleteActeur(acteur)
     }
 }

@@ -1,5 +1,8 @@
 package rahma.androidfirst.mymovies
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
 data class FilmsSemaineFR(
     val page: Int,
     val results: List<Film>,
@@ -25,6 +28,12 @@ data class Film(
     val vote_count: Int
 )
 
+@Entity
+data class FilmEntity(
+    @PrimaryKey val id: Int,
+    val fiche: Film,
+    val isFav: Boolean = false
+)
 
 data class TvSemaineFR(
     val page: Int,
@@ -51,6 +60,13 @@ data class Tv(
     val vote_count: Int
 )
 
+@Entity
+data class SerieEntity(
+    @PrimaryKey val id: Int,
+    val fiche: Tv,
+    val isFav: Boolean = false
+)
+
 data class PersonSemaineFr(
     val page: Int,
     val results: List<Persons>,
@@ -71,6 +87,13 @@ data class Persons(
     val profile_path: String
 )
 
+@Entity
+data class ActeurEntity(
+    @PrimaryKey val id: Int,
+    val fiche: Persons,
+    val isFav: Boolean = false
+)
+
 data class KnownFor(
     val adult: Boolean,
     val backdrop_path: String,
@@ -88,8 +111,6 @@ data class KnownFor(
     val vote_average: Double,
     val vote_count: Int
 )
-
-
 
 data class DescFILM(
     val adult: Boolean = false,

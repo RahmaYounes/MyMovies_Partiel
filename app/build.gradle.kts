@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    kotlin("plugin.serialization") version "1.9.25"
+    kotlin("plugin.serialization") version "1.8.21"
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
     id("androidx.room")
@@ -86,7 +86,7 @@ dependencies {
     kapt("com.google.dagger:hilt-compiler:2.44")
 
     // Room
-    /*implementation("libs.room.runtime")
-    implementation("libs.room.ktx")
-    kapt("libs.room.compiler")*/
+    implementation("androidx.room:room-runtime:2.6.1")
+    kapt("androidx.room:room-compiler:2.6.1")
+    implementation("androidx.room:room-ktx:2.6.1")
 }
