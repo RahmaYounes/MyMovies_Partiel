@@ -30,7 +30,8 @@ fun SearchBar(
         IconButton(onClick = { isFavorite = !isFavorite }) {
             Icon(
                 imageVector = if (isFavorite) Icons.Filled.Favorite else Icons.Filled.FavoriteBorder,
-                contentDescription = null
+                contentDescription = null,
+                tint = if (isFavorite) Color.Red else Color.Gray
             )
         }
         TextField(

@@ -2,26 +2,17 @@ package rahma.androidfirst.mymovies
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.FavoriteBorder
+import androidx.compose.material3.*
 import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -33,7 +24,6 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import rahma.androidfirst.mymovies.ui.theme.CustomColor
-
 
 @Composable
 fun MoviesScreen(windowSizeClass: WindowSizeClass, innernavController: NavController) {
@@ -80,33 +70,7 @@ fun LayoutverticalFilm(modifier: Modifier = Modifier, windowSizeClass: WindowSiz
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             items(films.value) { film ->
-                Card(
-                    onClick = { innernavController.navigate("DescFILM/" + film.id) },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .background(CustomColor),
-                    colors = CardDefaults.cardColors(containerColor = CustomColor)
-                ) {
-                    Column(
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        modifier = Modifier.background(CustomColor)
-                    ) {
-                        AsyncImage(
-                            model = ("https://image.tmdb.org/t/p/w780/" + film.poster_path),
-                            contentDescription = null,
-                            modifier = Modifier.background(CustomColor)
-                        )
-                        Spacer(modifier = Modifier.size(8.dp))
-                        Text(
-                            text = film.title,
-                            fontFamily = FontFamily.SansSerif,
-                            fontSize = 17.sp,
-                            fontWeight = FontWeight.Bold,
-                            color = Color.Black
-                        )
-                        Spacer(modifier = Modifier.size(8.dp))
-                    }
-                }
+                MovieCard(film, innernavController)
             }
         }
     }
@@ -134,36 +98,64 @@ fun LayouthorizontalFilm(modifier: Modifier = Modifier, windowSizeClass: WindowS
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             items(films.value) { film ->
-                Card(
-                    onClick = { innernavController.navigate("DescFilm/" + film.id) },
+                MovieCard(film, innernavController)
+            }
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun MovieCard(film: Film, innernavController: NavController) {
+    var isFavorite by remember { mutableStateOf(false) }
+    Card(
+        onClick = { innernavController.navigate("DescFILM/" + film.id) },
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(CustomColor),
+        colors = CardDefaults.cardColors(containerColor = CustomColor)
+    ) {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.background(CustomColor)
+        ) {
+            Box {
+                AsyncImage(
+                    model = ("https://image.tmdb.org/t/p/w780/" + film.poster_path),
+                    contentDescription = null,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .background(CustomColor),
-                    colors = CardDefaults.cardColors(containerColor = CustomColor)
+                        .background(CustomColor)
+                )
+                IconButton(
+                    onClick = { isFavorite = !isFavorite },
+                    modifier = Modifier
+                        .align(Alignment.TopEnd)
+                        .padding(8.dp)
                 ) {
-                    Column(
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        modifier = Modifier.background(CustomColor)
-                    ) {
-                        AsyncImage(
-                            model = ("https://image.tmdb.org/t/p/w780/" + film.poster_path),
-                            contentDescription = null,
-                            modifier = Modifier
-                                .size(200.dp)
-                                .background(CustomColor)
-                        )
-                        Spacer(modifier = Modifier.size(3.dp))
-                        Text(
-                            text = film.title,
-                            fontFamily = FontFamily.SansSerif,
-                            fontSize = 17.sp,
-                            fontWeight = FontWeight.Bold,
-                            color = Color.Black
-                        )
-                        Spacer(modifier = Modifier.size(13.dp))
-                    }
+                    Icon(
+                        imageVector = if (isFavorite) Icons.Filled.Favorite else Icons.Filled.FavoriteBorder,
+                        contentDescription = null,
+                        tint = if (isFavorite) Color.Red else Color.White
+                    )
                 }
             }
+            Spacer(modifier = Modifier.size(4.dp)) // Reduced space
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(40.dp), // Adjust height as needed
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    text = film.title,
+                    fontFamily = FontFamily.SansSerif,
+                    fontSize = 17.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.Black
+                )
+            }
+            Spacer(modifier = Modifier.size(4.dp)) // Reduced space
         }
     }
 }
