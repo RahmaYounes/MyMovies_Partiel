@@ -59,10 +59,6 @@ android {
 
 dependencies {
     implementation("androidx.compose.material:material:1.3.1")
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation("io.coil-kt:coil-compose:2.4.0")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0")
-    implementation("com.squareup.retrofit2:converter-moshi:2.9.0")
     implementation("androidx.compose.material3:material3-window-size-class:1.1.1")
     implementation("androidx.navigation:navigation-compose:2.5.3")
     implementation("androidx.core:core-ktx:1.9.0")
@@ -81,6 +77,12 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
+    //Retorfit
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("io.coil-kt:coil-compose:2.4.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0")
+    implementation("com.squareup.retrofit2:converter-moshi:2.9.0")
+
 
     // kapt
     implementation("com.google.dagger:hilt-android:2.44")
@@ -90,4 +92,6 @@ dependencies {
     implementation("androidx.room:room-runtime:2.6.1")
     kapt("androidx.room:room-compiler:2.6.1")
     implementation("androidx.room:room-ktx:2.6.1")
+
+
 }

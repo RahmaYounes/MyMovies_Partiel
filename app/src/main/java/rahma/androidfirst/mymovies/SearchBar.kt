@@ -46,7 +46,7 @@ fun SearchBar(
             },
             placeholder = {
                 Text(
-                    text = "Search movies...",
+                    text = "Search ...",
                     color = Color.Gray,
                     fontSize = 16.sp
                 )

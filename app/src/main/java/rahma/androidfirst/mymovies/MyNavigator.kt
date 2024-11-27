@@ -90,7 +90,7 @@ fun MyNavigator(modifier: Modifier = Modifier, windowSizeClass: WindowSizeClass)
         ) {
             composable("home") { MoviesScreen(windowSizeClass, innernavController) }
             composable("series") { SerieScreen(windowSizeClass, innernavController) }
-            composable("actor") { ActorScreen(windowSizeClass) }
+            composable("actor") { ActorScreen(windowSizeClass, innernavController) }
             composable("DescFILM/{filmId}") { Movies(windowSizeClass) }
             composable("DetailsSerie/{serieId}") { Series(windowSizeClass) }
         }
