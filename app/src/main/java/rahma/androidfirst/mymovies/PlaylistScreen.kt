@@ -41,10 +41,10 @@ fun PlaylistScreen(windowSizeClass: WindowSizeClass, navController: NavControlle
 
             when (classeLargeur) {
                 WindowWidthSizeClass.Compact -> {
-                    LayoutVertical(modifier = Modifier, navController)
+                    Layoutvertical(modifier = Modifier, navController)
                 }
                 else -> {
-                    LayoutHorizontal(modifier = Modifier, navController)
+                    Layouthorizontal(modifier = Modifier, navController)
                 }
             }
 
@@ -52,6 +52,18 @@ fun PlaylistScreen(windowSizeClass: WindowSizeClass, navController: NavControlle
 
 @Composable
 fun Layoutvertical(modifier: Modifier = Modifier, navController: NavController) {
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.SpaceEvenly
+    ) {
+        PlaySection(modifier)
+
+    }
+}
+
+@Composable
+fun Layouthorizontal(modifier: Modifier = Modifier, navController: NavController) {
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
