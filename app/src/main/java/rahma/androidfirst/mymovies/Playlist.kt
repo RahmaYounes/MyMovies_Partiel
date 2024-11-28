@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 import rahma.androidfirst.mymovies.ui.theme.CustomColor
 
-data class playlist(
+data class Playlist(
     val checksum: String,
     val collaborative: Boolean,
     val cover: String,

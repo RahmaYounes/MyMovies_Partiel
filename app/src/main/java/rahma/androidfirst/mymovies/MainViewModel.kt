@@ -1,8 +1,10 @@
 package rahma.androidfirst.mymovies
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.squareup.moshi.Moshi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import retrofit2.Retrofit
@@ -19,6 +21,7 @@ class MainViewModel : ViewModel() {
     val listmovies = MutableStateFlow<List<Film>>(listOf())
     val searchQuery = MutableStateFlow("")
 
+
     init {
         getMovies()
     }
@@ -29,16 +32,9 @@ class MainViewModel : ViewModel() {
         }
     }
 
-    fun searchMovies(query: String) {
-        viewModelScope.launch {
-            searchQuery.value = query
-            if (query.isNotEmpty()) {
-                listmovies.value = api.searchMovies(api_key = API_KEY, query = query).results
-            } else {
-                getMovies()
-            }
-        }
-    }
+
+
+
 }
 
 class ViewModelserie : ViewModel() {
@@ -94,6 +90,25 @@ class ViewModelperson : ViewModel() {
         }
     }
 }
+
+class ViewModelPlaylist : ViewModel() {
+
+    val listPlaylist = MutableStateFlow<List<Playlist>>(listOf())
+
+    init {
+        getPlaylist()
+    }
+
+    fun getPlaylist():Playlist {
+        val moshi= Moshi.Builder().build()
+        return moshi.adapter(Playlist::class.java).fromJson(playlistjson)!!
+    }
+
+
+}
+
+
+
 
 class ViewModeldescfilm(savedStateHandle: SavedStateHandle) : ViewModel() {
     private val filmId: String = checkNotNull(savedStateHandle["filmId"])

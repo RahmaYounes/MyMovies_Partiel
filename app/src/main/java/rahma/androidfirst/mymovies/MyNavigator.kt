@@ -84,7 +84,7 @@ fun MyNavigator(modifier: Modifier = Modifier, windowSizeClass: WindowSizeClass)
                         selected = false,
                         onClick = { innernavController.navigate("playlist") },
                         icon = { Icon(Icons.Filled.AddCircle, contentDescription = null, modifier = Modifier.padding(bottom = 4.dp)) },
-                        label = { Text(text = "Playlists") },
+                        label = { Text(text = "Playlist") },
                         colors = NavigationBarItemDefaults.colors(
                             selectedIconColor = Color.Cyan,
                             unselectedIconColor = Color.Gray,
