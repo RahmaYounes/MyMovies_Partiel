@@ -36,18 +36,16 @@ import rahma.androidfirst.mymovies.ui.theme.CustomColor
 
 @Composable
 fun PlaylistScreen(windowSizeClass: WindowSizeClass, navController: NavController) {
+    val classeLargeur = windowSizeClass.widthSizeClass
 
-    val  classeLargeur = windowSizeClass.widthSizeClass
-
-            when (classeLargeur) {
-                WindowWidthSizeClass.Compact -> {
-                    Layoutvertical(modifier = Modifier, navController)
-                }
-                else -> {
-                    Layouthorizontal(modifier = Modifier, navController)
-                }
-            }
-
+    when (classeLargeur) {
+        WindowWidthSizeClass.Compact -> {
+            Layoutvertical(modifier = Modifier, navController)
+        }
+        else -> {
+            Layouthorizontal(modifier = Modifier, navController)
+        }
+    }
 }
 
 @Composable
@@ -57,33 +55,120 @@ fun Layoutvertical(modifier: Modifier = Modifier, navController: NavController) 
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceEvenly
     ) {
-        PlaySection(modifier)
-
+        PlaySectionVertical(modifier)
     }
 }
 
 @Composable
 fun Layouthorizontal(modifier: Modifier = Modifier, navController: NavController) {
-    Column(
+    Row(
         modifier = Modifier.fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.SpaceEvenly
+        horizontalArrangement = Arrangement.SpaceEvenly,
+        verticalAlignment = Alignment.CenterVertically
     ) {
-        PlaySection(modifier)
-
+        PlaySectionHorizontal(modifier)
     }
 }
 
 @Composable
-fun PlaySection(modifier: Modifier = Modifier) {
+fun PlaySectionVertical(modifier: Modifier = Modifier) {
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
-        // Image principale circulaire
-        AsyncImage(
-            model = "file:///android_asset/image/2.jpg",
-            contentDescription = "image partiel"
+        Text(
+            text = "Fav'app",
+            modifier = modifier,
+            fontFamily = FontFamily.SansSerif,
+            fontSize = 23.sp,
+            fontWeight = FontWeight.Bold,
+            textAlign = TextAlign.Left
         )
-        Spacer(modifier = Modifier.height(25.dp))
+        Spacer(modifier = Modifier.height(50.dp))
 
+        AsyncImage(
+            model = "file:///android_asset/1.jpg",
+            contentDescription = "Image 1",
+            modifier = Modifier.size(150.dp),
+            contentScale = ContentScale.Crop
+        )
+        Text(
+            text = "3 Gymnopédies: No. 1, Lent et douloureux",
+            fontSize = 16.sp,
+            fontWeight = FontWeight.Bold,
+            textAlign = TextAlign.Center
+        )
+        Spacer(modifier = Modifier.height(20.dp))
 
+        AsyncImage(
+            model = "file:///android_asset/2.jpg",
+            contentDescription = "Image 2",
+            modifier = Modifier.size(150.dp),
+            contentScale = ContentScale.Crop
+        )
+        Text(
+            text = "Bach, JS: Cello Suite No. 1 in G Major, BWV 1007: I. Prélude",
+            fontSize = 16.sp,
+            fontWeight = FontWeight.Bold,
+            textAlign = TextAlign.Center
+        )
+    }
+}
+
+@Composable
+fun PlaySectionHorizontal(modifier: Modifier = Modifier) {
+    Row(horizontalArrangement = Arrangement.SpaceEvenly) {
+        // Première image avec titre
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            Text(
+                text = "Fav'app",
+                modifier = modifier,
+                fontFamily = FontFamily.SansSerif,
+                fontSize = 23.sp,
+                fontWeight = FontWeight.Bold,
+                textAlign = TextAlign.Left
+            )
+            Spacer(modifier = Modifier.height(50.dp))
+
+            AsyncImage(
+                model = "file:///android_asset/1.jpg", // Chemin correct
+                contentDescription = "Image 1",
+                modifier = Modifier.size(100.dp),
+                contentScale = ContentScale.Crop
+            )
+            Text(
+                text = "3 Gymnopédies: No. 1, Lent et douloureux",
+                fontSize = 14.sp,
+                fontWeight = FontWeight.Bold,
+                textAlign = TextAlign.Center
+            )
+        }
+
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            AsyncImage(
+                model = "file:///android_asset/2.jpg",
+                contentDescription = "Image 2",
+                modifier = Modifier.size(100.dp),
+                contentScale = ContentScale.Crop
+            )
+            Text(
+                text = "Bach, JS: Cello Suite No. 1 in G Major, BWV 1007: I. Prélude",
+                fontSize = 14.sp,
+                fontWeight = FontWeight.Bold,
+                textAlign = TextAlign.Center
+            )
+        }
+
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            AsyncImage(
+                model = "file:///android_asset/3.jpg",
+                contentDescription = "Image 3",
+                modifier = Modifier.size(100.dp),
+                contentScale = ContentScale.Crop
+            )
+            Text(
+                text = "Beethoven: Piano Sonata No. 14 in C-Sharp Minor, Op. 27 No. 2 \"Moonlight Sonata\": I. Adagio sostenuto",
+                fontSize = 14.sp,
+                fontWeight = FontWeight.Bold,
+                textAlign = TextAlign.Center
+            )
+        }
     }
 }
