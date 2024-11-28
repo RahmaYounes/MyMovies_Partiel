@@ -32,7 +32,16 @@ class MainViewModel : ViewModel() {
         }
     }
 
-
+    fun searchMovies(query: String) {
+        viewModelScope.launch {
+            searchQuery.value = query
+            if (query.isNotEmpty()) {
+                listmovies.value = api.searchMovies(api_key = API_KEY, query = query).results
+            } else {
+                getMovies()
+            }
+        }
+    }
 
 
 }
