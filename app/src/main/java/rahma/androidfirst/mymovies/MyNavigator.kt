@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.filled.Send
 import androidx.compose.material.icons.filled.Star
@@ -78,6 +79,19 @@ fun MyNavigator(modifier: Modifier = Modifier, windowSizeClass: WindowSizeClass)
                             unselectedTextColor = Color.Gray
                         )
                     )
+
+                    NavigationBarItem(
+                        selected = false,
+                        onClick = { innernavController.navigate("playlist") },
+                        icon = { Icon(Icons.Filled.AddCircle, contentDescription = null, modifier = Modifier.padding(bottom = 4.dp)) },
+                        label = { Text(text = "Playlists") },
+                        colors = NavigationBarItemDefaults.colors(
+                            selectedIconColor = Color.Cyan,
+                            unselectedIconColor = Color.Gray,
+                            selectedTextColor = Color.Cyan,
+                            unselectedTextColor = Color.Gray
+                        )
+                    )
                 }
             }
         }
@@ -85,12 +99,13 @@ fun MyNavigator(modifier: Modifier = Modifier, windowSizeClass: WindowSizeClass)
 
         NavHost(
             navController = innernavController,
-            startDestination = "home",
+            startDestination = "playlist",
             Modifier.padding(innerPadding)
         ) {
             composable("home") { MoviesScreen(windowSizeClass, innernavController) }
             composable("series") { SerieScreen(windowSizeClass, innernavController) }
             composable("actor") { ActorScreen(windowSizeClass, innernavController) }
+            composable("playlist") { Playlist(windowSizeClass, innernavController) }
             composable("DescFILM/{filmId}") { Movies(windowSizeClass) }
             composable("DetailsSerie/{serieId}") { Series(windowSizeClass) }
         }
