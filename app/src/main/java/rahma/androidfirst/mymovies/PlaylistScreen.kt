@@ -82,7 +82,7 @@ fun PlaySection(modifier: Modifier = Modifier) {
             model = "file:///android_asset/image/2.jpg",
             contentDescription = "image partiel"
         )
-        Spacer(modifier = Modifier.height(23.dp))
+        Spacer(modifier = Modifier.height(25.dp))
 
 
     }
